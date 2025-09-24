@@ -94,3 +94,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const linksDiv = document.querySelector('.links');
+  if (!linksDiv) return;
+
+  const listItems = linksDiv.querySelectorAll('li');
+
+  listItems.forEach(async li => {
+    const aTag = li.querySelector('a[data-url]');
+    if (aTag) {
+      const websiteUrl = aTag.getAttribute('data-url');
+      const faviconApiUrl = `/get-favicon?url=${encodeURIComponent(websiteUrl)}`;
+
+      try {
+        const response = await fetch(faviconApiUrl);
+        if (response.ok) {
+          const faviconSrc = await response.text();
+          const img = document.createElement('img');
+          img.src = faviconSrc;
+          img.width = 100;
+          img.height = 100;
+          li.prepend(img); // Add the image before the anchor tag
+        } else {
+          console.error(`Failed to get favicon for ${websiteUrl}`);
+        }
+      } catch (error) {
+        console.error(`Error fetching favicon for ${websiteUrl}:`, error);
+      }
+    }
+  });
+});

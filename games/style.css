@@ -102,7 +102,6 @@ footer {
 }
 
 .linkdiv {
-  opacity: 0.7;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* For Webkit browsers like Chrome, Safari */
   /* Positioning and stacking */
@@ -117,7 +116,7 @@ footer {
   outline: none;
   align-items: center;
   gap: 10px;
-  background-color: rgb(7, 7, 35);
+  background-color: rgba(7, 7, 35, 0.7);
   border-radius: 1em;
   width: calc(100vw - 300px);
   height: calc(100vh - 300px);

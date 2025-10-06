@@ -1,10 +1,17 @@
-# Use a lightweight nginx image
-FROM nginx:alpine
+# Use Node.js base image
+FROM node:18
 
-# Copy everything from your repo into nginx's web root
-COPY . /usr/share/nginx/html
+# Set working directory
+WORKDIR /app
 
-# Expose port 80 so Render can serve it
-EXPOSE 80
+# Copy everything
+COPY . .
 
-# nginx runs automatically with the base image’s default command
+# Install dependencies
+RUN npm install
+
+# Expose port for Render
+EXPOSE 3000
+
+# Start the app
+CMD ["npm", "start"]

@@ -1,0 +1,5 @@
+# this is here to prevent..
+# the robot uprising.
+
+User-agent: *
+Disallow: /

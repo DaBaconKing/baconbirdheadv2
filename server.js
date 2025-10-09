@@ -19,6 +19,14 @@ app.get('/api/ping', (req, res) => {
 
 // Fallback to index.html for SPA routing
 app.get('*', (req, res, next) => {
+  const requestedPath = req.path;
+
+  // If the request is for a known static file, skip this route
+  if (requestedPath.endsWith('.html') || requestedPath.endsWith('.css') || requestedPath.endsWith('.js')) {
+    return next();
+  }
+
+  // Otherwise, serve index.html for SPA routing
   res.sendFile(path.join(__dirname, 'public/index.html'), err => {
     if (err) next(err);
   });

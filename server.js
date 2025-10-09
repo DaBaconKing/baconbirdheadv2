@@ -1,4 +1,4 @@
-const express = require('express');
+  const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +21,7 @@ app.get('/api/ping', (req, res) => {
 app.get('*', (req, res, next) => {
   const requestedPath = req.path;
 
-  // If the request is for a known static file, skip this route
+  // If it's a known static file, skip to static handler
   if (requestedPath.endsWith('.html') || requestedPath.endsWith('.css') || requestedPath.endsWith('.js')) {
     return next();
   }
@@ -30,6 +30,17 @@ app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'public/index.html'), err => {
     if (err) next(err);
   });
+});
+
+// 404 handler — unmatched routes
+app.use((req, res) => {
+  res.redirect(`/error.html?errorcode=404`);
+});
+
+// Error handler — thrown errors
+app.use((err, req, res, next) => {
+  const errorCode = err.status || 500;
+  res.redirect(`/error.html?errorcode=${errorCode}`);
 });
 
 app.listen(PORT, () => {

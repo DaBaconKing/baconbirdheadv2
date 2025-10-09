@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from /public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve robots.txt explicitly (optional, but precise)
+// Serve robots.txt explicitly
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.send(`User-agent: *\nDisallow: /`);
@@ -18,8 +18,16 @@ app.get('/api/ping', (req, res) => {
 });
 
 // Fallback to index.html for SPA routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+app.get('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'), err => {
+    if (err) next(err);
+  });
+});
+
+// Error-handling middleware
+app.use((err, req, res, next) => {
+  const errorCode = err.status || 500;
+  res.redirect(`/error.php/?errorcode=${errorCode}`);
 });
 
 app.listen(PORT, () => {

@@ -27,7 +27,7 @@ app.get('*', (req, res, next) => {
 // Error-handling middleware
 app.use((err, req, res, next) => {
   const errorCode = err.status || 500;
-  res.redirect(`/error.php/?errorcode=${errorCode}`);
+  res.redirect(`http://localhost:8080/error.php?errorcode=${errorCode}`);
 });
 
 app.listen(PORT, () => {

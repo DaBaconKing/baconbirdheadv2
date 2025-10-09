@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="https://raw.githack.com/DaBaconKing/codetemplates/refs/heads/main/standardstyle.css" />
+  <link rel="stylesheet" href="{i will add path myself}" />
+  <link rel="shortcut icon" href="{i will add myself}" />
+  <link rel="canonical" href="https://baconbirdhead.codehs.me" />
+  <title id="page-title">Error</title>
+</head>
+
+<body>
+  <div class="centered-div">
+    <img id="error-img" draggable="false" alt="Error image" style="border-radius: 0.5em;" />
+    <h1><strong id="error-code">???</strong> - File not found. :(</h1>
+    <h3>oh no! the file you are looking for, is missing!</h3>
+    <p id="error-explanation">Something went wrong.</p>
+    <a class="cta" href="mailto:hartj@student.acpsd.net">Email me if this happens again.</a>
+    <button onclick="location.href = '/index.html';" class="cta">Go to homepage.</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("errorcode") || "Unknown";
+
+    const errorMap = {
+      "400": ["Bad Request", "The server couldn’t understand your request."],
+      "401": ["Unauthorized", "You need to log in to access this resource."],
+      "403": ["Forbidden", "Access denied. You don’t have permission."],
+      "404": ["Not Found", "The file you’re looking for doesn’t exist."],
+      "500": ["Internal Server Error", "Something went wrong on the server."],
+      "502": ["Bad Gateway", "The server received an invalid response."],
+      "503": ["Service Unavailable", "The server is temporarily offline."],
+      "504": ["Gateway Timeout", "The server took too long to respond."]
+    };
+
+    const [meaning, explanation] = errorMap[code] || ["Unknown Error", "An unexpected error occurred."];
+
+    document.getElementById("page-title").textContent = `${code} ${meaning}.`;
+    document.getElementById("error-code").textContent = code;
+    document.getElementById("error-explanation").textContent = explanation;
+    document.getElementById("error-img").src = `https://filepuller3000v2.onrender.com/?target=https://http.cat/${code}`;
+    document.getElementById("error-img").alt = `${code}, ${meaning}`;
+  </script>
+</body>
+</html>

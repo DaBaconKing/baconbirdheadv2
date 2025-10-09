@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    ports:
+      - "3000:3000"
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+    ports:
+      - "8080:80"

@@ -1,6 +1,6 @@
 # 🥓 BaconGames
 BaconGames, a simple little games site for school.
-If the main url is blocked, its simple to fork and host yourself.
+If the main url is blocked, its simple to host yourself.
 
 ## 📜 Instructions for self hosting.
 Instructions for hosting this yourself.
@@ -16,3 +16,4 @@ Instructions for hosting this yourself.
 
 ## Extra:
 [Main URL](https://bacongames-v2.onrender.com)
+[License](https://github.com/DaBaconKing/bacongames/blob/main/LICENSE)

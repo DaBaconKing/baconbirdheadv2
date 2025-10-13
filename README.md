@@ -10,9 +10,8 @@ Instructions for hosting this yourself.
 > **2** - On your dashboard, create a new `Web Service`.  
 > **3** - For github repository, select `Public Git Repository`.  
 > **4** - Input: `https://github.com/DaBaconKing/bacongames`  
-> **5** - Set `Start Command` to: `node server.js`.  
-> **6 [IMPORTANT!]** - Turn on `Auto Deploy` in advanced section, this automatically updates bgames.  
-> **7** - Click `Deploy`, and you're done! Copy the primary URL and have fun with it! :D
+> **5 [IMPORTANT!]** - Turn on `Auto Deploy` in advanced section, this automatically updates bgames.  
+> **6** - Click `Deploy`, and you're done! Copy the primary URL and have fun with it! :D
 
 ## Extra:
 [Main URL](https://bacongames-v2.onrender.com)

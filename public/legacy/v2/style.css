@@ -1,0 +1,136 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --bgcolor: rgb(25, 25, 43);
+    --txtcolor: rgb(227, 214, 214);
+}
+
+/* Background Pseudo-Element */
+body {
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+li a{
+  cursor: pointer;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://cdn-baconbirdheadv2.onrender.com/main/images/background.jpg);
+    background-size: cover;
+    opacity: 0.05;
+    z-index: -1; /* This places the background image behind everything*/
+}
+
+/* Snow Container */
+#snow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2; /* A positive z-index ensures it sits above the background */
+}
+
+.snowflake {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear infinite;
+  z-index: 2; /* Higher z-index to appear on top */
+}
+
+
+h1{
+    font-weight: 900;
+    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.links {
+  display: flex;
+  justify-content: flex-start; /* Aligns the flex items to the right */
+  gap: 15px; /* Sets the spacing between the links */
+  padding-right: 10px; /* Pushes the entire container 10px off the right edge */
+  list-style: none; /* Removes list bullets */
+}
+
+.links li{
+    background-color: rgb(68, 8, 69);
+    padding: 10px;
+    border-radius: 0.5em;
+    transition: 150ms ease;
+}
+
+.links li:hover{
+    scale: 1.05;
+}
+
+.links li:active{
+    scale: 0.95;
+    opacity: 0.5;
+}
+
+.disabled{
+    opacity: 0.5;
+    scale: 0.9;
+    color: rgb(177, 156, 156);
+}
+
+footer {
+    z-index: 999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Set a specific height for the footer */
+    background-color: #333;
+    color: white;
+    text-align: center;
+    line-height: 60px; /* Vertically centers text if height is fixed */
+}
+
+.linkdiv {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Webkit browsers like Chrome, Safari */
+  /* Positioning and stacking */
+  position: fixed; /* Positions the element relative to the browser window */
+  top: 50%; /* Moves the top edge to the vertical center */
+  left: 50%; /* Moves the left edge to the horizontal center */
+  transform: translate(-50%, -50%); /* Adjusts the element back by half its own width and height to perfectly center it */
+  z-index: 9999; /* Ensures the element is on top of other content */
+  
+  /* Your existing styles */
+  display: flex;
+  outline: none;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(7, 7, 35, 0.7);
+  border-radius: 1em;
+  width: calc(100vw - 300px);
+  height: calc(100vh - 300px);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bgblur{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Webkit browsers like Chrome, Safari */
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 0; } /* Start above screen, faded */
+    100% { transform: translateY(100vh); opacity: 1; } /* Fall to bottom, fully opaque */
+}

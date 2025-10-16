@@ -15,4 +15,5 @@ Instructions for hosting this yourself.
 
 ## Extra:
 [Main URL](https://bacongames-v2.onrender.com)
+[Secondary URL](https://bacongamz-temp.onrender.com)
 [License](https://github.com/DaBaconKing/bacongames/blob/main/LICENSE)

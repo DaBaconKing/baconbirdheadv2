@@ -11,7 +11,7 @@ COPY . .
 RUN npm install
 
 # Expose port for Render
-EXPOSE 3000
+EXPOSE 8080
 
 # Start the app
 CMD ["npm", "start"]

@@ -1,96 +1,59 @@
-const snowContainer = document.getElementById('snow-container');
-const numberOfSnowflakes = 50; // Adjust for desired density
+AOS.init({ duration: 800 });
 
-function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-
-    // Randomize size
-    const size = Math.random() * 5 + 2; // Between 2px and 7px
-    snowflake.style.width = `${size}px`;
-    snowflake.style.height = `${size}px`;
-
-    // Randomize starting position
-    snowflake.style.left = `${Math.random() * 100}vw`;
-
-    // Randomize animation duration and delay for varied fall speeds
-    snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5 to 10 seconds
-    snowflake.style.animationDelay = `-${Math.random() * 5}s`; // Stagger start times
-
-    snowContainer.appendChild(snowflake);
-
-    // Remove snowflake after it falls off screen to prevent accumulation
-    snowflake.addEventListener('animationiteration', () => {
-        snowflake.remove();
-        createSnowflake(); // Create a new one to maintain count
-    });
+function toggleTheme() {
+  const html = document.documentElement;
+  html.dataset.theme = html.dataset.theme === "light" ? "dark" : "light";
 }
 
-// Generate initial snowflakes
-for (let i = 0; i < numberOfSnowflakes; i++) {
-    createSnowflake();
-}
+const AUTH_CODE = "MGEFDHGIERHGOIUE-/BACON4LIFE";
+const PROXY_URL = "https://faviconsnatcher3000.onrender.com/";
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Select all anchor tags inside a list item within the div.links
-  const linksContainer = document.querySelector('.links');
-  if (!linksContainer) {
-    console.error("Could not find the '.links' container.");
-    return;
-  }
-  const anchorTags = linksContainer.querySelectorAll('li a');
-  const outputContainer = document.getElementById('output');
-  if (!outputContainer) {
-    console.error("Could not find the '#output' container.");
-    return;
-  }
+document.querySelectorAll('.card').forEach(async card => {
+  const targetURL = card.getAttribute('data-URL');
+  if (!targetURL) return;
 
-  // Iterate over each anchor tag and add a click event listener
-  anchorTags.forEach(link => {
-    link.addEventListener('click', (event) => {
-      // Prevent the default link behavior
-      event.preventDefault();
-
-      // Get the data attributes from the clicked link
-      const url = link.dataset.url;
-      const content = link.dataset.cont;
-      const qdesc = link.textContent;
-
-      // Clear any previously generated content
-      outputContainer.innerHTML = '';
-
-      // Create the main div element
-      const newDiv = document.createElement('div');
-      newDiv.id = url; // Use the data-url as the id
-      newDiv.classList.add('linkdiv'); // Add the class 'LINKDIV'
-      
-      // Create the H2 element
-      const newH2 = document.createElement('h2');
-      newH2.textContent = `contributer: ${content}`; // Use the data-cont as the content
-      
-      // Create the PRE elem, with the url
-      const newPRE = document.createElement('pre');
-      const newCODEPRE = document.createElement('code');
-      newCODEPRE.textContent = `${url} (${qdesc})`;
-
-      // Create the button element with class CTA
-      const newButton = document.createElement('button');
-      newButton.textContent = 'Go to Page';
-      newButton.className = 'cta';
-
-      // Add a click listener to the button to redirect the user
-      newButton.addEventListener('click', () => {
-        window.open(url, '_blank');
-      });
-
-      // Append the H2 and button to the new div
-      newPRE.appendChild(newCODEPRE);
-      newDiv.appendChild(newH2);
-      newDiv.appendChild(newPRE);
-      newDiv.appendChild(newButton);
-
-      // Append the new div to the output container
-      outputContainer.appendChild(newDiv);
+  try {
+    // 🔥 Fetch metadata from your proxy
+    const response = await fetch(`${PROXY_URL}?target=${encodeURIComponent(targetURL)}`, {
+      headers: {
+        "x-auth-code": AUTH_CODE
+      }
     });
-  });
+
+    if (!response.ok) throw new Error("Metadata fetch failed");
+
+    const { title, description, favicon } = await response.json();
+
+    // 🖼️ Inject favicon
+    card.querySelector('.card-img').src = favicon || "";
+
+    // 🧠 Inject title
+    card.querySelector('.card-sitetitle').innerText = title || "Untitled";
+
+    // 📝 Inject description
+    const descElem = card.querySelector('.card-sitedesc');
+    if (description) {
+      descElem.innerText = description;
+    } else {
+      descElem.innerText = "No description available.";
+      descElem.classList.add("empty");
+    }
+
+    // 🔗 Set play button href
+    card.querySelector('.card-playbutton').href = targetURL;
+
+  } catch (err) {
+    console.warn(`Failed to load metadata for ${targetURL}`, err);
+    card.querySelector('.card-sitetitle').innerText = "Failed to load";
+    const descElem = card.querySelector('.card-sitedesc');
+    descElem.innerText = "No description available.";
+    descElem.classList.add("empty");
+    card.querySelector('.card-img').style.backgroundColor = "#ccc";
+  }
 });
+
+const scrollBtn = document.getElementById('scrollTopBtn');
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+);

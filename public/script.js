@@ -6,7 +6,7 @@ function toggleTheme() {
 }
 
 const AUTH_CODE = "MGEFDHGIERHGOIUE-/BACON4LIFE";
-const PROXY_URL = "https://faviconsnatcher3000.onrender.com/";
+const PROXY_URL = "https://bacongames/api/siteinfo";
 
 document.querySelectorAll('.card').forEach(async card => {
   const targetURL = card.getAttribute('data-URL');

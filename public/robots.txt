@@ -2,5 +2,10 @@
 # the robot uprising.
 
 User-agent: *
-Disallow: /
+Allow: /docs/
+Allow: /favicon.ico
+Allow: /sitemap.xml
+Disallow: /admin/
+Disallow: /private/
+
 Sitemap: https://bacongamz.net/sitemap.xml

@@ -22,12 +22,14 @@ app.use((req, res) => {
   res.redirect(`/error.html?errorcode=404`);
 });
 
+
+
 // Error handler
 app.use((err, req, res, next) => {
   const errorCode = err.status || 500;
   res.redirect(`/error.html?errorcode=${errorCode}`);
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });

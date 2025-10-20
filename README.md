@@ -1,19 +1,14 @@
 # 🥓 BaconGames
 BaconGames, a simple little games site for school.
-If the main url is blocked, its simple to host yourself.
+If the main url is blocked, its simple to get your own domain for it yourself.
 
-## 📜 Instructions for self hosting.
-Instructions for hosting this yourself.
-**This REPO is pre-configured for [Render](https://render.com/) hosting. If you plan to not use render, you will have to modify this for how you are hosting it.
-### <a href="https://render.com"><img src="https://cdn-baconbirdheadv2.onrender.com/main/misc/gitMD/bacongames/rLOGO.svg" alt="Alt text"></a> Render Hosting:
-> **1** - Log into [Render](https://render.com/).  
-> **2** - On your dashboard, create a new `Web Service`.  
-> **3** - For github repository, select `Public Git Repository`.  
-> **4** - Input: `https://github.com/DaBaconKing/bacongames`  
-> **5 [IMPORTANT!]** - Turn on `Auto Deploy` in advanced section, this automatically updates bgames.  
-> **6** - Click `Deploy`, and you're done! Copy the primary URL and have fun with it! :D
-
+## 📜 Instructions for routing a domain.
+> **1** - Go to your Domain provider.
+> **2** - Add a new `A` record.
+> **3** - Point said `A` record to ```34.26.200.130```
+> **4 [IMPORTANT]** - [Email me](mailto:baconbirdhead@gmail.com) so i can configure NGINX.
+> 
 ## Extra:
-[Main URL](https://bacongames-v2.onrender.com)
+[Main URL](https://bacongamz.net)
 [Secondary URL](https://bacongamz-temp.onrender.com)
 [License](https://github.com/DaBaconKing/bacongames/blob/main/LICENSE)

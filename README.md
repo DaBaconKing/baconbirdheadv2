@@ -7,7 +7,7 @@ If the main url is blocked, its simple to get your own domain for it yourself.
 > **2** - Add a new `A` record.
 > **3** - Point said `A` record to ```34.26.200.130```
 > **4 [IMPORTANT]** - [Email me](mailto:baconbirdhead@gmail.com) so i can configure NGINX.
-> 
+
 ## Extra:
 [Main URL](https://bacongamz.net)
 [Secondary URL](https://bacongamz-temp.onrender.com)

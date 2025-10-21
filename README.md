@@ -5,8 +5,11 @@ If the main url is blocked, its simple to get your own domain for it yourself.
 ## 📜 Instructions for routing a domain.
 
 > **1** - Go to your Domain provider.
+> 
 > **2** - Add a new `A` record.
+>
 > **3** - Point said `A` record to ```34.26.200.130```
+>
 > **4 [IMPORTANT]** - [Email me](mailto:baconbirdhead@gmail.com) so i can configure NGINX.
 
 ## Extra:

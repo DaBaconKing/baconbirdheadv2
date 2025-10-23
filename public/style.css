@@ -240,8 +240,11 @@ body {
 
 .scroll-top-btn {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  top: 50%; /* Position the top edge at the vertical center of the screen */
+  right: 1.5rem; /* Keep it positioned 1.5rem from the right edge */
+  transform: translateY(-50%); /* Shift the element up by 50% of its own height */
+  
+  /* Retain your existing styles */
   width: 48px;
   height: 48px;
   background-color: var(--footer-bg);
@@ -255,6 +258,7 @@ body {
   transition: transform 0.2s ease, background-color 0.3s ease;
   z-index: 999;
 }
+
 
 .scroll-top-btn:hover {
   transform: scale(1.1);
